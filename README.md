@@ -6,7 +6,7 @@
 npm install
 ```
 
-### Setup node server
+### Setup node server on port 3000
 
 ```
 node server.js
