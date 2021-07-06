@@ -1,9 +1,10 @@
 import axios from 'axios';
-let port = process.env.PORT;
-if (port == null || port == "") {
-  port = 'https://localhost:8080';
+
+let host = 'http://localhost:3000';
+if (process.env.NODE_ENV == 'production') {
+  host = 'https://uc-cart.herokuapp.com';
 }
-const url=port+"/products/";
+const url=host+"/products/";
 
 export default function apiService(index, range, callback){
     const apiUrl= url+index+'/'+range
