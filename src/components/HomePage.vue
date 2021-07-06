@@ -1,7 +1,7 @@
 <template>
   <div id="main-container" class="container">
     <Card
-      v-for="product in products"
+      v-for="product in productList"
       :key="product.productId"
       :product="product"
       :cartItem="cartList.includes(product.productId)"
@@ -14,6 +14,7 @@
 <script>
 import Card from "./Card.vue";
 import apiService from '../service';
+import { mapState } from 'vuex';
 
 export default {
   name: "HomePage",
@@ -21,21 +22,23 @@ export default {
   data(){
     return{
       cartList: [],
-      products: [],
       next: this.$store.getters.getNext,
       range: this.$store.getters.getRange,
       total: this.$store.getters.getTotal
     }
   },
+  computed: mapState({
+    productList: state => state.searchList?state.searchList:state.productList,
+    searchOn: state => state.searchList?true:false
+  }),
   created() {
-    this.products = [...this.$store.getters.getProducts];
     this.cartList=this.$store.getters.getCart.map( product => {
       return product.productId;
     })
   },
   mounted(){
     const loadData = () =>{
-      if((this.next <= this.total/this.range) && (window.innerHeight + window.scrollY >= document.body.scrollHeight)){
+      if(!this.searchOn && (this.next <= this.total/this.range) && (window.innerHeight + window.scrollY >= document.body.scrollHeight)){
         this.getNextData();
       }
     }
@@ -47,7 +50,6 @@ export default {
       apiService(this.next*this.range, this.range, (data) => {
         this.loaded=true;
         this.$store.dispatch("addProducts", data).then(() => {
-          this.products.push(...data.products);
           this.next++;
         });
       })
