@@ -7,6 +7,7 @@ export default new Vuex.Store({
         user: {},
         myCart: [],
         productList: [],
+        searchList: null,
         next: 0,
         total: 0,
         range: 8
@@ -16,6 +17,13 @@ export default new Vuex.Store({
             state.productList.push(...data.products);
             state.total=data.total;
             state.next++;
+        },
+        SET_PRODUCTS(state, data) {
+            state.productList=[...data];
+            state.next=1;
+        },
+        SEARCH_PRODUCTS(state, data) {
+            state.searchList=data?[...data]:null;
         },
         ADD_TO_CART(state, data) {
             state.myCart.push(data);
@@ -30,6 +38,12 @@ export default new Vuex.Store({
     actions: {
         addProducts({ commit }, products) {
             commit('ADD_PRODUCTS', products)
+        },
+        searchProducts({ commit }, products) {
+            commit('SEARCH_PRODUCTS', products)
+        },
+        setProducts({ commit }, products) {
+            commit('SET_PRODUCTS', products)
         },
         addToCart({ commit }, product) {
             commit('ADD_TO_CART', product)
