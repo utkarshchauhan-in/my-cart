@@ -1,5 +1,9 @@
 import axios from 'axios';
-const url="http://localhost:3000/products/";
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 'https://localhost:8080';
+}
+const url=port+"/products/";
 
 export default function apiService(index, range, callback){
     const apiUrl= url+index+'/'+range

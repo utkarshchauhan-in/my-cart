@@ -1,0 +1,155 @@
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100vh;
+  background-color: grey;
+}
+#navbar {
+  width: 100vw;
+  background-color: #252324;
+  color: #fff;
+  vertical-align: middle;
+  height: 7vh;
+  font-size: 32px;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  margin: 0;
+  padding-top: 10px;
+}
+
+#navbar > .home {
+  cursor: pointer;
+  margin-left: 200px;
+}
+
+#navbar > .cart-icon {
+  float: right;
+  cursor: pointer;
+  padding-right: 3vw;
+}
+
+#navbar > .back-icon {
+  float: left;
+  cursor: pointer;
+  padding-left: 3vw;
+}
+
+#navbar > .search {
+  float: right;
+  margin-top: 5px;
+  margin-right: 20px;
+  padding: 5px 10px;
+  width: 250px;
+  border: none;
+  border-radius: 10px;
+}
+
+.empty-cart {
+  margin: 10vh 40vw;
+  color: #fff;
+}
+
+.container {
+  margin-top: 9vh;
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.item-card {
+  max-width: 20vw;
+  height: 450px;
+  padding: 0 5px 10px 5px;
+  font-size: 16px;
+  box-shadow: 0 4px 8px 0 black;
+  border-radius: 5px;
+  margin: 2vw;
+  background-color: #fff;
+}
+
+.item-card:hover {
+  box-shadow: 0 4px 8px 0 goldenrod;
+}
+
+.item-card > img {
+  width: 100%;
+  height: 250px;
+}
+
+.item-card > span.gender {
+  display: inline;
+  float: left;
+}
+
+.item-card > span.color {
+  display: inline;
+  float: right;
+}
+
+.item-card > div {
+  display: block;
+  float: left;
+  margin-left: 15px;
+  margin-top: 15px;
+}
+
+.item-card > div.brand {
+  font-weight: bold;
+}
+
+.item-card > div > button {
+  color: white;
+  border-radius: 5px;
+  padding: 2px;
+  width: 100px;
+  height: 30px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button.add-cart {
+  background-color: #24a0ed;
+  border: #24a0ed;
+  display: block;
+  margin-top: 15px;
+  box-shadow: 0 1px 2px 0 grey;
+}
+
+button.remove-cart {
+  background-color: red;
+  border: red;
+  display: block;
+  margin-top: 15px;
+  box-shadow: 0 1px 2px 0 grey;
+}
+
+/* For mobile phones: */
+[class*="col-"] {
+  width: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+  /* For mobile: */
+  .item-card {
+    max-width: 40vw;
+  }
+  #navbar > .home {
+    margin-left: 20px;
+    float: left;
+  }
+}
+
+@media only screen and (max-width: 540px) {
+  /* For mobile: */
+  .item-card {
+    max-width: 70vw;
+  }
+
+  #navbar > .search {
+    width: 150px;
+  }
+}
