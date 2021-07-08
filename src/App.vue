@@ -3,7 +3,7 @@
     <Navbar />
     <router-view v-if="loaded" />
     <div v-else>Server Error: Cannot Fetch Data</div>
-    <Installer v-if="showInstaller" @close="showInstaller=false"/>
+    <Installer v-if="showInstaller" :installPrompt="installPrompt" @close="closeInstaller"/>
   </div>
 </template>
 
@@ -19,18 +19,31 @@ export default {
     return{
       loaded: false,
       range: this.$store.getters.getRange,
-      showInstaller: true
+      showInstaller: false,
+      installPrompt: null
     }
   },
   created(){
-    apiService(0,this.range, (products) => {
-    this.loaded=true;
-    this.$store.dispatch("addProducts", products);
-    })
+    window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    this.installPrompt = e;
+    this.showInstaller=true;
 
     setTimeout(() => {
       this.showInstaller=false;
     },30000)
+    })
+
+    apiService(0,this.range, (products) => {
+    this.loaded=true;
+    this.$store.dispatch("addProducts", products);
+    })
+  },
+  methods: {
+    closeInstaller(){
+      this.showInstaller=false;
+      this.installPrompt=null;
+    }
   }
 };
 </script>

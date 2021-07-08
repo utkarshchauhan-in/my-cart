@@ -9,33 +9,17 @@
 <script>
 export default {
     name: "Installer",
-    data(){
-        return{
-            installPrompt: null
-        }
-    },
-    created(){
-        window.addEventListener('beforeinstallprompt', (e) => {
-        console.log("Prompted")
-        e.preventDefault();
-        this.installPrompt = e;
-        console.log(`'beforeinstallprompt' event was fired.`);
-        });
-
-        if(!this.installPrompt) this.close();
-    },
+    props: { installPrompt: null },
     methods: {
         installApp(){
-            console.log("Prompted Button")
             this.installPrompt.prompt();
             this.installPrompt.userChoice.then(choiceResult => {
-                if (choiceResult.outcome === 'accepted') {
-                console.log('User accepted the A2HS prompt');
-                } else {
-                console.log('User dismissed the A2HS prompt');
-                }
-                this.installPrompt = null;
-                this.close();
+            if (choiceResult.outcome === 'accepted') {
+            console.log('User accepted the A2HS prompt');
+            } else {
+            console.log('User dismissed the A2HS prompt');
+            }
+            this.close();
             });
         },
         close(){
