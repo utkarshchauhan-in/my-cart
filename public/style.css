@@ -127,9 +127,37 @@ button.remove-cart {
   box-shadow: 0 1px 2px 0 grey;
 }
 
-/* For mobile phones: */
-[class*="col-"] {
-  width: 100%;
+.installer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 250px;
+  height: 150px;
+  padding: 10px;
+  background-color: #fff;
+  font-weight: 600;
+  box-sizing: border-box;
+  text-align: center;
+  border: 1px solid black;
+}
+.installer > span {
+  display: block;
+  margin: 10px;
+}
+.installer > button {
+  padding: 5px;
+  margin: 10px;
+  width: 80px;
+  height: 40px;
+  background-color: lightblue;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.installer > button.no {
+  background-color: red;
+  color: #fff;
 }
 
 @media only screen and (max-width: 768px) {
@@ -149,11 +177,16 @@ button.remove-cart {
     max-width: 70vw;
   }
 
-  #navbar > .search {
-    margin-top: 20px;
+  .installer {
+    width: 100vw;
+    height: 18vh;
+  }
+
+  #navbar {
+    height: 12vh;
   }
 
   .container {
-    margin-top: 15vh;
+    margin-top: 14vh;
   }
 }

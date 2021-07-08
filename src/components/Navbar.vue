@@ -30,7 +30,7 @@ export default {
         this.$store.dispatch('searchProducts', searchResult);
         }
         else this.$store.dispatch('searchProducts', null);
-      }, 1000)
+      }, 300)
     },
     goHome() {
       this.$router.push("/").catch(() => {});
